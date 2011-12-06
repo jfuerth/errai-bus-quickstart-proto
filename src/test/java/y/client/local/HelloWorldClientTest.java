@@ -1,7 +1,9 @@
 package y.client.local;
 
 import org.jboss.errai.bus.client.tests.AbstractErraiTest;
+import org.jboss.errai.ioc.client.api.Bootstrapper;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 
 public class HelloWorldClientTest extends AbstractErraiTest {
@@ -11,8 +13,18 @@ public class HelloWorldClientTest extends AbstractErraiTest {
     return "y.App";
   }
 
+  @Override
+  protected void gwtSetUp() throws Exception {
+    super.gwtSetUp();
+    
+    // We need to bootstrap the IoC container manually because GWTTestCase
+    // doesn't call onModuleLoad() for us.
+    Bootstrapper bootstrapper = GWT.create(Bootstrapper.class);
+    bootstrapper.bootstrapContainer();
+  }
+  
   public void testSendMessage() throws Exception {
-    ErraiIocTestHelper.afterBusInitialized(new Runnable() {
+    runAfterInit(new Runnable() {
       @Override
       public void run() {
         final HelloWorldClient client = ErraiIocTestHelper.instance.client;
@@ -38,5 +50,6 @@ public class HelloWorldClientTest extends AbstractErraiTest {
 
       }
     });
+    delayTestFinish(80000);
   }
 }

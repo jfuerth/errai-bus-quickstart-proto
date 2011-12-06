@@ -42,7 +42,8 @@ public class ErraiIocTestHelper {
   static boolean busInitialized = false;
   
   @Inject HelloWorldClient client;
-
+  @Inject ClientMessageBus bus;
+  
   @PostConstruct
   void saveStaticReference() {
     instance = this;
@@ -59,19 +60,21 @@ public class ErraiIocTestHelper {
    *          The code to run once Errai CDI is up and running in the context of
    *          the web page.
    */
-  public static void afterBusInitialized(final Runnable runnable) {
-    final Timer t = new Timer() {
-      @Override
-      public void run() {
-        ClientMessageBus bus = (ClientMessageBus) ErraiBus.get();
-        if (bus != null && bus.isInitialized()) {
-          runnable.run();
-        } else {
-          // poll again later
-          schedule(500);
-        }
-      }
-    };
-    t.schedule(500);
-  }
+//  public static void afterBusInitialized(final Runnable runnable) {
+//    final Timer t = new Timer() {
+//      @Override
+//      public void run() {
+//        ClientMessageBus bus = instance.bus;
+//        if (bus != null && bus.isInitialized()) {
+//          System.out.println("Bus initialized. Running test... (bus=" + bus + ")");
+//          runnable.run();
+//        } else {
+//          // poll again later
+//          System.out.println("Bus not initialized yet (bus=" + bus + ")");
+//          schedule(500);
+//        }
+//      }
+//    };
+//    t.schedule(500);
+//  }
 }

@@ -3,3 +3,5 @@ war/WEB-INF/deploy
 .errai
 .project
 .settings
+target
+war/WEB-INF/classes/

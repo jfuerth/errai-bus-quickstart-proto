@@ -613,11 +613,6 @@
                 <groupId>org.jboss.errai</groupId>
                 <artifactId>jacoco-gwt-maven-plugin</artifactId>
                 <version>0.5.4-SNAPSHOT</version>
-                <configuration>
-                    <debugAgent>true</debugAgent>
-                    <includes>y.*</includes>
-                    <snapshotClassLoaders>*</snapshotClassLoaders>
-                </configuration>
                 <executions>
                     <execution>
                         <id>jacoco-gwt-prepare-agent</id>
