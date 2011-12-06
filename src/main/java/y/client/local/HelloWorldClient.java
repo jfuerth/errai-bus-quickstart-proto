@@ -78,7 +78,7 @@ public class HelloWorldClient extends VerticalPanel {
         .repliesTo(new MessageCallback() {
           public void callback(Message message) {
             System.out.println("Got a Response!");
-            responseLabel.setText("xMessage from Server: " + message.get(String.class, MessageParts.Value));
+            responseLabel.setText("Message from Server: " + message.get(String.class, MessageParts.Value));
           }
         })
         .sendNowWith(bus);

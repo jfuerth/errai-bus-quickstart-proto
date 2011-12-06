@@ -24,7 +24,7 @@ public class HelloWorldClientTest extends AbstractErraiTest {
   }
   
   public void testSendMessage() throws Exception {
-    runAfterInit(new Runnable() {
+    ErraiIocTestHelper.afterBusInitialized(new Runnable() {
       @Override
       public void run() {
         final HelloWorldClient client = ErraiIocTestHelper.instance.client;
@@ -50,6 +50,6 @@ public class HelloWorldClientTest extends AbstractErraiTest {
 
       }
     });
-    delayTestFinish(80000);
+    delayTestFinish(20000);
   }
 }
